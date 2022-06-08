@@ -1,0 +1,11 @@
+{
+  "componentname": "ui.ssuite.s2p.mm.pur.po.manage.st.s1",
+  "safeMode": false,
+  "appvariant": "ManagePurchaseOrderAdp",
+  "layer": "CUSTOMER_BASE",
+  "sourceSystem": "gambit_gp2020_wo_user",
+  "isOVPApp": false,
+  "isFioriElement": true,
+  "environment": "ABAP",
+  "ui5Version": "1.96.1"
+}

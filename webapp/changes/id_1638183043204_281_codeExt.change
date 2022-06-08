@@ -1,0 +1,34 @@
+{
+	"fileName": "id_1638183043204_281_codeExt",
+	"fileType": "change",
+	"changeType": "codeExt",
+	"moduleName": "customer/ManagePurchaseOrderAdp/changes/coding/CustomListController",
+	"reference": "customer.ManagePurchaseOrderAdp",
+	"packageName": "$TMP",
+	"content": {
+		"codeRef": "coding/CustomListController.js"
+	},
+	"selector": {
+		"controllerName": "sap.suite.ui.generic.template.ListReport.view.ListReport"
+	},
+	"layer": "CUSTOMER_BASE",
+	"texts": {},
+	"namespace": "apps/ui.ssuite.s2p.mm.pur.po.manage.st.s1/changes/",
+	"projectId": "customer.ManagePurchaseOrderAdp",
+	"creation": "2021-11-29T10:50:43.257Z",
+	"originalLanguage": "DE",
+	"support": {
+		"generator": "Change.createInitialFileContent",
+		"service": "",
+		"user": "",
+		"sapui5Version": "1.96.2",
+		"sourceChangeFileName": "",
+		"compositeCommand": "",
+		"command": ""
+	},
+	"oDataInformation": {},
+	"dependentSelector": {},
+	"jsOnly": false,
+	"variantReference": "",
+	"appDescriptorChange": false
+}

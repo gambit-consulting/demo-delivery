@@ -1,0 +1,23 @@
+# yaml-language-server: $schema=https://sap.github.io/ui5-tooling/schema/ui5.yaml.json
+
+specVersion: "2.5"
+metadata:
+  name: gambit.demo.delivery.manageorders
+type: application
+builder:
+  resources:
+    excludes:
+      - /test/**
+      - /localService/**
+  customTasks:
+    - name: deploy-to-abap
+      afterTask: generateCachebusterInfo
+      configuration:
+        target:
+          destination: gambit_gp2021_wo_user
+          url: http://gambit.gp2021:443
+        app:
+          name: ZMANAGE_ORDERS
+          description: Rap App
+          package: ZRAP_PIZZA
+          transport: S4HK902944
