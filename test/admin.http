@@ -1,0 +1,35 @@
+@api=http://localhost:4004/Products
+
+#############
+# Products
+#############
+
+GET {{api}}/Products
+
+###
+
+POST {{api}}/Products
+Content-Type: application/json
+
+{
+    "category": "Pommes",
+    "name": "Rotweiss",
+    "price": 5.99,
+    "currency_code": "EUR"
+}
+
+#############
+# Orders
+#############
+
+GET {{api}}/Orders
+
+###
+
+POST {{api}}/Orders
+Content-Type: application/json
+
+{
+    "note": "Pizzen bitte schneiden",
+    "status": "s"    
+}

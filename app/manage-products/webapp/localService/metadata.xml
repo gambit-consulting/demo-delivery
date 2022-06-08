@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="4.0" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+    <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Capabilities.V1.xml">
+        <edmx:Include Alias="Capabilities" Namespace="Org.OData.Capabilities.V1"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Core.V1.xml">
+        <edmx:Include Alias="Core" Namespace="Org.OData.Core.V1"/>
+    </edmx:Reference>
+    <edmx:DataServices>
+        <Schema Namespace="ProductService" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+            <EntityContainer Name="EntityContainer">
+                <EntitySet Name="Products" EntityType="ProductService.Products"/>
+                <EntitySet Name="Orders" EntityType="ProductService.Orders">
+                    <NavigationPropertyBinding Path="to_Items" Target="Items"/>
+                </EntitySet>
+                <EntitySet Name="Items" EntityType="ProductService.Items">
+                    <NavigationPropertyBinding Path="to_Orders" Target="Orders"/>
+                    <NavigationPropertyBinding Path="product" Target="Products"/>
+                </EntitySet>
+            </EntityContainer>
+            <EntityType Name="Products">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+                <Property Name="category" Type="Edm.String" MaxLength="40"/>
+                <Property Name="name" Type="Edm.String" MaxLength="40"/>
+                <Property Name="price" Type="Edm.Decimal" Scale="variable"/>
+                <Property Name="costs" Type="Edm.Decimal" Scale="variable"/>
+                <Property Name="currencyCode" Type="Edm.String" MaxLength="3"/>
+                <Property Name="rating" Type="Edm.Decimal" Scale="2" Precision="4"/>
+            </EntityType>
+            <EntityType Name="Orders">
+                <Key>
+                    <PropertyRef Name="id"/>
+                </Key>
+                <Property Name="id" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="customer" Type="Edm.String" MaxLength="40"/>
+                <Property Name="createdAt" Type="Edm.DateTimeOffset"/>
+                <Property Name="note" Type="Edm.String" MaxLength="120"/>
+                <NavigationProperty Name="to_Items" Type="Collection(ProductService.Items)" Partner="to_Orders">
+                    <OnDelete Action="Cascade"/>
+                </NavigationProperty>
+            </EntityType>
+            <EntityType Name="Items">
+                <Key>
+                    <PropertyRef Name="id"/>
+                    <PropertyRef Name="to_Orders_id"/>
+                </Key>
+                <Property Name="id" Type="Edm.Int32" Nullable="false"/>
+                <NavigationProperty Name="to_Orders" Type="ProductService.Orders" Partner="to_Items">
+                    <ReferentialConstraint Property="to_Orders_id" ReferencedProperty="id"/>
+                </NavigationProperty>
+                <Property Name="to_Orders_id" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="quantity" Type="Edm.Int32"/>
+                <NavigationProperty Name="product" Type="ProductService.Products">
+                    <ReferentialConstraint Property="product_ID" ReferencedProperty="ID"/>
+                </NavigationProperty>
+                <Property Name="product_ID" Type="Edm.Guid"/>
+            </EntityType>
+            <Annotations Target="ProductService.EntityContainer/Products">
+                <Annotation Term="Capabilities.DeleteRestrictions">
+                    <Record Type="Capabilities.DeleteRestrictionsType">
+                        <PropertyValue Property="Deletable" Bool="false"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.InsertRestrictions">
+                    <Record Type="Capabilities.InsertRestrictionsType">
+                        <PropertyValue Property="Insertable" Bool="false"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.UpdateRestrictions">
+                    <Record Type="Capabilities.UpdateRestrictionsType">
+                        <PropertyValue Property="Updatable" Bool="false"/>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="ProductService.Products/rating">
+                <Annotation Term="Core.Computed" Bool="true"/>
+            </Annotations>
+            <Annotations Target="ProductService.Orders/id">
+                <Annotation Term="Core.Computed" Bool="true"/>
+            </Annotations>
+            <Annotations Target="ProductService.Orders/customer">
+                <Annotation Term="Core.Computed" Bool="true"/>
+            </Annotations>
+            <Annotations Target="ProductService.Orders/createdAt">
+                <Annotation Term="Core.Computed" Bool="true"/>
+            </Annotations>
+            <Annotations Target="ProductService.Items/id">
+                <Annotation Term="Core.Computed" Bool="true"/>
+            </Annotations>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>

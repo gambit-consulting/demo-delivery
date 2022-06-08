@@ -1,0 +1,4 @@
+specVersion: "2.5"
+metadata:
+  name: gambit.demo.delivery.manageproducts
+type: application
