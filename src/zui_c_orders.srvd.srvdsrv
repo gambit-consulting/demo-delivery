@@ -1,0 +1,7 @@
+@EndUserText.label: 'Service definition for Orders'
+define service ZUI_C_ORDERS {
+  expose ZC_RAP_ORDERS;
+  expose ZC_RAP_ORDER_ITEMS;
+  expose ZC_RAP_PRODUCTS;
+  expose I_Currency as Currency;
+}

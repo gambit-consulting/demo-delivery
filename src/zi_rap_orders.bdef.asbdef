@@ -1,0 +1,47 @@
+managed implementation in class zbp_i_rap_orders unique;
+strict;
+
+define behavior for ZI_RAP_ORDERS alias Orders
+implementation in class zbp_i_rap_orders unique
+persistent table zrap_orders
+lock master
+etag master last_changed_at
+authorization master ( global )
+early numbering
+{
+  field ( readonly ) mykey;
+  field ( readonly ) total_price, currency_code, overall_status;
+  field ( readonly ) last_changed_at, last_changed_by, created_at, created_by;
+
+  create;
+  update;
+  delete;
+
+  action ( features : instance ) sendOrder result [1] $self;
+  action ( features : instance ) cancelOrder result [1] $self;
+
+  association _OrderItems { create; }
+
+  internal action ReCalcTotalPrice;
+
+  determination CalculateOrderDefaults on modify { create; }
+}
+
+define behavior for ZI_RAP_ORDER_ITEMS alias Items
+implementation in class zbp_i_rap_order_items unique
+persistent table zrap_order_items
+lock dependent by _Order
+authorization dependent by _Order
+early numbering
+{
+  field ( readonly ) mykey, pos, price, currency_code;
+  field ( mandatory ) quantity;
+  field ( mandatory : create, readonly : update ) product;
+
+  update;
+  delete;
+
+  association _Order { }
+
+  determination CalculateTotalPrice on modify { create; update; field quantity; }
+}

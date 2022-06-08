@@ -1,0 +1,17 @@
+managed implementation in class zbp_i_rap_products unique;
+strict;
+
+define behavior for ZI_RAP_PRODUCTS alias Products
+persistent table zrap_products
+lock master
+authorization master ( global )
+etag master last_changed_at
+{
+  field ( readonly, numbering : managed ) id;
+
+  field ( readonly ) last_changed_at, last_changed_by, created_at, created_by;
+
+  create;
+  update;
+  delete;
+}

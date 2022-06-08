@@ -1,0 +1,5 @@
+CLASS zbp_i_rap_order_items DEFINITION PUBLIC ABSTRACT FINAL FOR BEHAVIOR OF zi_rap_orders.
+ENDCLASS.
+
+CLASS zbp_i_rap_order_items IMPLEMENTATION.
+ENDCLASS.

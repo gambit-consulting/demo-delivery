@@ -1,0 +1,5 @@
+CLASS zbp_i_rap_products DEFINITION PUBLIC ABSTRACT FINAL FOR BEHAVIOR OF zi_rap_products.
+ENDCLASS.
+
+CLASS zbp_i_rap_products IMPLEMENTATION.
+ENDCLASS.
