@@ -1,41 +1,36 @@
 ## Application Details
-|               |
-| ------------- |
-|**Generation Date and Time**<br>Thu Apr 21 2022 11:06:57 GMT+0000 (Coordinated Universal Time)|
-|**App Generator**<br>@sap/generator-fiori-elements|
-|**App Generator Version**<br>1.5.4|
-|**Generation Platform**<br>SAP Business Application Studio|
-|**Floorplan Used**<br>List Report Object Page V4|
-|**Service Type**<br>Local Cap|
-|**Service URL**<br>http://localhost:4004/public/
+
+|                                                                                                  |
+| ------------------------------------------------------------------------------------------------ |
+| **Generation Date and Time**<br>Mon Feb 26 2024 09:50:52 GMT+0100 (Mitteleuropäische Normalzeit) |
+| **App Generator**<br>@sap/generator-fiori-elements                                               |
+| **App Generator Version**<br>1.12.4                                                              |
+| **Generation Platform**<br>Visual Studio Code                                                    |
+| **Template Used**<br>List Report Page V4                                                         |
+| **Service Type**<br>Local Cap                                                                    |
+
+|**Service URL**<br>http://localhost:4004/odata/v4/public/
 |**Module Name**<br>manage-orders|
 |**Application Title**<br>Manage Orders|
 |**Namespace**<br>gambit.demo.delivery|
-|**UI5 Theme**<br>sap_fiori_3|
-|**UI5 Version**<br>1.100.2|
+|**UI5 Theme**<br>sap_horizon|
+|**UI5 Version**<br>1.120.8|
 |**Enable Code Assist Libraries**<br>False|
+|**Enable TypeScript**<br>False|
 |**Add Eslint configuration**<br>False|
 |**Main Entity**<br>Orders|
 |**Navigation Entity**<br>to_Items|
 
 ## manage-orders
 
-A Fiori application for managing orders.
+An SAP Fiori application for managing orders.
 
 ### Starting the generated app
 
--   This app has been generated using the SAP Fiori tools - App Generator, as part of the SAP Fiori tools suite.  In order to launch the generated app, simply start your CAP project and navigate to the following location in your browser:
+- This app has been generated using the SAP Fiori tools - App Generator, as part of the SAP Fiori tools suite. In order to launch the generated app, simply start your CAP project and navigate to the following location in your browser:
 
 http://localhost:4004/manage-orders/webapp/index.html
 
-- It is also possible to run the application using mock data that reflects the OData Service URL supplied during application generation.  In order to run the application with Mock Data, run the following from the generated app root folder:
-
-```
-    npm run start-mock
-```
-
 #### Pre-requisites:
 
-1. Active NodeJS LTS (Long Term Support) version and associated supported NPM version.  (See https://nodejs.org)
-
-
+1. Active NodeJS LTS (Long Term Support) version and associated supported NPM version. (See https://nodejs.org)

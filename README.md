@@ -4,13 +4,13 @@ Welcome to the Gambit demo project.
 
 It contains these folders and files, following our recommended project layout:
 
-File or Folder | Purpose
----------|----------
-`app/` | content for UI frontends goes here
-`db/` | your domain models and data go here
-`srv/` | your service models and code go here
-`package.json` | project metadata and configuration
-`readme.md` | this getting started guide
+| File or Folder | Purpose                              |
+| -------------- | ------------------------------------ |
+| `app/`         | content for UI frontends goes here   |
+| `db/`          | your domain models and data go here  |
+| `srv/`         | your service models and code go here |
+| `package.json` | project metadata and configuration   |
+| `readme.md`    | this getting started guide           |
 
 ## Prerequisites
 
@@ -20,10 +20,10 @@ With the first steps below, you can go for a minimal local setup as follows:
 2. [Install SQLite](https://sqlite.org/download.html) (only required on Windows).
 3. Install `@sap/cds-dk` globally with:
 
-    ```bash
-    npm i -g @sap/cds-dk
-    cds # test installation
-    ```
+   ```bash
+   npm i -g @sap/cds-dk
+   cds # test installation
+   ```
 
 ## Run it yourself
 

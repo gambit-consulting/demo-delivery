@@ -1,49 +1,29 @@
 {
-  "name": "delivery",
-  "version": "1.0.0",
-  "description": "A simple CAP project.",
-  "repository": "<Add your repository here>",
-  "license": "UNLICENSED",
-  "type": "commonjs",
-  "private": true,
-  "dependencies": {
-    "@sap/cds": "^5",
-    "express": "^4"
-  },
-  "devDependencies": {
-    "@sap/ux-specification": "^1.100.0",
-    "sqlite3": "^5.0.2"
-  },
-  "scripts": {
-    "start": "cds run"
-  },
-  "eslintConfig": {
-    "extends": "eslint:recommended",
-    "env": {
-      "es2020": true,
-      "node": true,
-      "jest": true,
-      "mocha": true
+    "name": "demo-delivery",
+    "version": "1.0.0",
+    "description": "A simple CAP project.",
+    "repository": "https://github.com/gambit-consulting/demo-delivery",
+    "license": "MIT",
+    "private": true,
+    "dependencies": {
+        "@sap/cds": "^7",
+        "express": "^4"
     },
-    "globals": {
-      "SELECT": true,
-      "INSERT": true,
-      "UPDATE": true,
-      "DELETE": true,
-      "CREATE": true,
-      "DROP": true,
-      "CDL": true,
-      "CQL": true,
-      "CXL": true,
-      "cds": true
+    "devDependencies": {
+        "@cap-js/sqlite": "^1",
+        "@sap/ux-specification": "^1.120.4",
+        "eslint": "^8.57.0",
+        "prettier": "^3.2.5"
     },
-    "rules": {
-      "no-console": "off",
-      "require-atomic-updates": "off"
-    }
-  },
-  "sapux": [
-    "app/manage-products",
-    "app/manage-orders"
-  ]
+    "scripts": {
+        "dev": "cds-ts watch",
+        "format": "prettier --write --ignore-unknown .",
+        "start": "cds-serve",
+        "watch-manage-products": "cds watch --open manage-products/webapp/index.html?sap-ui-xx-viewCache=false",
+        "watch-manage-orders": "cds watch --open manage-orders/webapp/index.html?sap-ui-xx-viewCache=false"
+    },
+    "sapux": [
+        "app/manage-products",
+        "app/manage-orders"
+    ]
 }

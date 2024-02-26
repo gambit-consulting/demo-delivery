@@ -1,7 +1,7 @@
 {
     "name": "manage-products",
     "version": "0.0.1",
-    "description": "A Fiori application for managing Products.",
+    "description": "An SAP Fiori application for managing products.",
     "keywords": [
         "ui5",
         "openui5",
@@ -11,5 +11,5 @@
     "scripts": {
         "deploy-config": "npx -p @sap/ux-ui5-tooling fiori add deploy-config cf"
     },
-    "devDependencies": { }
+    "devDependencies": {}
 }

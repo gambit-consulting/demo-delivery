@@ -1,6 +1,7 @@
-# CAP delivery
+# CAP demo-delivery
 _out
 *.db
+*.sqlite
 connection.properties
 default-*.json
 .cdsrc-private.json

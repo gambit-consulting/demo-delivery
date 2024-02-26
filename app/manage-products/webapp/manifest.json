@@ -1,5 +1,5 @@
 {
-    "_version": "1.12.0",
+    "_version": "1.59.0",
     "sap.app": {
         "id": "gambit.demo.delivery.manageproducts",
         "type": "application",
@@ -11,26 +11,17 @@
         "description": "{{appDescription}}",
         "resources": "resources.json",
         "sourceTemplate": {
-            "id": "@sap-ux/fiori-elements-writer:lrop",
-            "version": "0.1.9"
+            "id": "@sap/generator-fiori:lrop",
+            "version": "1.12.4",
+            "toolsId": "fcc5b14b-5642-45a2-937d-418f7ad1ab9a"
         },
         "dataSources": {
             "mainService": {
-                "uri": "/product/",
+                "uri": "/odata/v4/product/",
                 "type": "OData",
                 "settings": {
-                    "annotations": [
-                        "annotation"
-                    ],
-                    "localUri": "localService/metadata.xml",
+                    "annotations": [],
                     "odataVersion": "4.0"
-                }
-            },
-            "annotation": {
-                "type": "ODataAnnotation",
-                "uri": "annotations/annotation.xml",
-                "settings": {
-                    "localUri": "annotations/annotation.xml"
                 }
             }
         }
@@ -54,7 +45,7 @@
     "sap.ui5": {
         "flexEnabled": true,
         "dependencies": {
-            "minUI5Version": "1.100.2",
+            "minUI5Version": "1.120.8",
             "libs": {
                 "sap.m": {},
                 "sap.ui.core": {},
@@ -65,7 +56,7 @@
         },
         "contentDensities": {
             "compact": true,
-            "cozy": true
+            "cozy": false
         },
         "models": {
             "i18n": {
@@ -81,8 +72,7 @@
                     "synchronizationMode": "None",
                     "operationMode": "Server",
                     "autoExpandSelect": true,
-                    "earlyRequests": true,
-                    "groupId": "$direct"
+                    "earlyRequests": true
                 }
             },
             "@i18n": {
@@ -105,17 +95,12 @@
                 {
                     "pattern": ":?query:",
                     "name": "ProductsList",
-                    "target": [
-                        "ProductsList"
-                    ]
+                    "target": ["ProductsList"]
                 },
                 {
                     "pattern": "Products({key}):?query:",
                     "name": "ProductsObjectPage",
-                    "target": [
-                        "ProductsList",
-                        "ProductsObjectPage"
-                    ]
+                    "target": ["ProductsList", "ProductsObjectPage"]
                 }
             ],
             "targets": {
@@ -125,7 +110,7 @@
                     "name": "sap.fe.templates.ListReport",
                     "options": {
                         "settings": {
-                            "entitySet": "Products",
+                            "contextPath": "/Products",
                             "variantManagement": "Page",
                             "navigation": {
                                 "Products": {
@@ -154,7 +139,8 @@
                     "name": "sap.fe.templates.ObjectPage",
                     "options": {
                         "settings": {
-                            "entitySet": "Products"
+                            "editableHeaderContent": false,
+                            "contextPath": "/Products"
                         }
                     },
                     "controlAggregation": "midColumnPages",

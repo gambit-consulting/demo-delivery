@@ -1,5 +1,5 @@
 {
-    "_version": "1.12.0",
+    "_version": "1.59.0",
     "sap.app": {
         "id": "gambit.demo.delivery.manageorders",
         "type": "application",
@@ -11,26 +11,17 @@
         "description": "{{appDescription}}",
         "resources": "resources.json",
         "sourceTemplate": {
-            "id": "@sap-ux/fiori-elements-writer:lrop",
-            "version": "0.1.9"
+            "id": "@sap/generator-fiori:lrop",
+            "version": "1.12.4",
+            "toolsId": "bb01c0f1-1e53-48d7-ab14-ad64f0b5e5f6"
         },
         "dataSources": {
             "mainService": {
-                "uri": "/public/",
+                "uri": "/odata/v4/public/",
                 "type": "OData",
                 "settings": {
-                    "annotations": [
-                        "annotation"
-                    ],
-                    "localUri": "localService/metadata.xml",
+                    "annotations": [],
                     "odataVersion": "4.0"
-                }
-            },
-            "annotation": {
-                "type": "ODataAnnotation",
-                "uri": "annotations/annotation.xml",
-                "settings": {
-                    "localUri": "annotations/annotation.xml"
                 }
             }
         }
@@ -54,17 +45,18 @@
     "sap.ui5": {
         "flexEnabled": true,
         "dependencies": {
-            "minUI5Version": "1.100.2",
+            "minUI5Version": "1.120.8",
             "libs": {
                 "sap.m": {},
                 "sap.ui.core": {},
                 "sap.ushell": {},
-                "sap.fe.templates": {}
+                "sap.fe.templates": {},
+                "sap.f": {}
             }
         },
         "contentDensities": {
             "compact": true,
-            "cozy": true
+            "cozy": false
         },
         "models": {
             "i18n": {
@@ -80,8 +72,7 @@
                     "synchronizationMode": "None",
                     "operationMode": "Server",
                     "autoExpandSelect": true,
-                    "earlyRequests": true,
-                    "groupId": "$direct"
+                    "earlyRequests": true
                 }
             },
             "@i18n": {
@@ -93,21 +84,28 @@
             "css": []
         },
         "routing": {
+            "config": {
+                "flexibleColumnLayout": {
+                    "defaultTwoColumnLayoutType": "TwoColumnsBeginExpanded",
+                    "defaultThreeColumnLayoutType": "ThreeColumnsMidExpanded"
+                },
+                "routerClass": "sap.f.routing.Router"
+            },
             "routes": [
                 {
                     "pattern": ":?query:",
                     "name": "OrdersList",
-                    "target": "OrdersList"
+                    "target": ["OrdersList"]
                 },
                 {
                     "pattern": "Orders({key}):?query:",
                     "name": "OrdersObjectPage",
-                    "target": "OrdersObjectPage"
+                    "target": ["OrdersList", "OrdersObjectPage"]
                 },
                 {
                     "pattern": "Orders({key})/to_Items({key2}):?query:",
                     "name": "ItemsObjectPage",
-                    "target": "ItemsObjectPage"
+                    "target": ["OrdersList", "OrdersObjectPage", "ItemsObjectPage"]
                 }
             ],
             "targets": {
@@ -117,7 +115,7 @@
                     "name": "sap.fe.templates.ListReport",
                     "options": {
                         "settings": {
-                            "entitySet": "Orders",
+                            "contextPath": "/Orders",
                             "variantManagement": "Page",
                             "navigation": {
                                 "Orders": {
@@ -135,7 +133,9 @@
                                 }
                             }
                         }
-                    }
+                    },
+                    "controlAggregation": "beginColumnPages",
+                    "contextPattern": ""
                 },
                 "OrdersObjectPage": {
                     "type": "Component",
@@ -144,23 +144,18 @@
                     "options": {
                         "settings": {
                             "editableHeaderContent": false,
-                            "entitySet": "Orders",
+                            "contextPath": "/Orders",
                             "navigation": {
                                 "to_Items": {
                                     "detail": {
                                         "route": "ItemsObjectPage"
                                     }
                                 }
-                            },
-                            "controlConfiguration": {
-                                "to_Items/@com.sap.vocabularies.UI.v1.LineItem#Bestellpositionen": {
-                                    "tableSettings": {
-                                        "creationMode": {}
-                                    }
-                                }
                             }
                         }
-                    }
+                    },
+                    "controlAggregation": "midColumnPages",
+                    "contextPattern": "/Orders({key})"
                 },
                 "ItemsObjectPage": {
                     "type": "Component",
@@ -169,11 +164,19 @@
                     "options": {
                         "settings": {
                             "editableHeaderContent": false,
-                            "entitySet": "Items"
+                            "contextPath": "/Orders/to_Items"
                         }
-                    }
+                    },
+                    "controlAggregation": "endColumnPages",
+                    "contextPattern": "/Orders({key})/to_Items({key2})"
                 }
             }
+        },
+        "rootView": {
+            "viewName": "sap.fe.templates.RootContainer.view.Fcl",
+            "type": "XML",
+            "async": true,
+            "id": "appRootView"
         }
     },
     "sap.fiori": {
